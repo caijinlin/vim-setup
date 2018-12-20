@@ -1,5 +1,6 @@
 so ~/.vim/plugins.vim
 
+" 基本配置
 set nocompatible
 set mouse=a "启用鼠标"
 set title     " window窗口显示文件名
@@ -10,12 +11,12 @@ set noerrorbells visualbell t_vb= " remove sounds effects
 set scrolloff=5             " Start scrolling n lines before horizontal.
 set sidescrolloff=7         " Start scrolling n chars before end of screen.
 set sidescroll=1            " The minimal number of columns to scroll horizontally.
-" 文件类型检测
-filetype plugin indent on
+filetype plugin indent on " 文件类型检测
 syntax  on    " 关键字上色
 syntax enable " 语法高亮
 set number    " 显示行号
 set noerrorbells visualbell t_vb= " remove sounds effects
+
 " 格式化与缩进
 set tabstop=8     " 制表符tab长度
 set softtabstop=4 " 程序tab键相当于4个空格
@@ -33,8 +34,6 @@ set autoindent" 与前一行同样等级缩进
 set t_CO=256 " 终端显示256色
 set cursorline " 高亮当前行
 " set cursorcolumn " 高亮当前列
-" highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
-" highlight CursorColumn cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
 set encoding=utf-8 " 编码，使汉语正常显示
 set termencoding=utf-8
 set fileencodings=utf-8,gb2312,gbk,gb18030
@@ -46,57 +45,71 @@ set ignorecase" 搜索忽略大小写
 set smartcase " 智能大小写搜索
 
 " 分屏
-"" 新分割窗口在下边和右边(sp/vsp)
-set splitbelow
-set splitright
+set splitbelow " 新分割窗口在下边(sp)
+set splitright " 新分割窗口在右边(vsp)
 au VimResized * exe "normal! \<c-w>=" " 窗口改变时自动调整大小 
 
+" 覆盖leader键
 let mapleader = ','
 let leader   = ','
 
-" 非递归按键映射 
-"" 删除一对括号
-nnoremap <F8> ma%x`ax
-vnoremap <leader>y "+y " 复制选中区到系统剪切板中
-vnoremap <C-c> "+y
-vnoremap <C-x> "+d
-vnoremap <C-v> "+p
-inoremap <C-v> <C-r><C-o>+
-inoremap jj <Esc>
-"" 滚动Speed up scrolling of the viewport slightly
-nnoremap <C-e> 2<C-e>
-nnoremap <C-y> 2<C-y>
-"" 针对屏幕行移动
+" ## 字母键 ## 
+
+" 复制到行末
+nmap Y y$ 
+" 针对屏幕行移动
 nnoremap k gk
 nnoremap gk k
 nnoremap j gj
 nnoremap gj j
-
-" normal模式按键映射
-nmap Y y$ " 复制到行末
-"" 窗口移动
-nmap <C-J> <C-W><C-J> 
-nmap <C-K> <C-W><C-K>
-nmap <C-H> <C-W><C-H>
-nmap <C-L> <C-W><C-L>
-"" 关闭当前的TabBar
-nmap <C-x> :bd<cr>
-"" 关闭方向键, 强迫自己用 hjkl
+" 关闭方向键移动, 强迫自己用 hjkl
 map <Left> <Nop>
 map <Right> <Nop>
 map <Up> <Nop>
 map <Down> <Nop>
-"" 自动保存 需要在.bash_profile 设置 stty -ixon支持
-nmap <C-s> :w!<cr>
-imap <C-s> <esc>:w!<cr>
-"" 调整分屏宽度
-nmap    w=  :resize +3<CR>
-nmap    w-  :resize -3<CR>
-nmap    w,  :vertical resize -3<CR>
-nmap    w.  :vertical resize +3<CR>
+" 调整分屏宽度
+nmap  w=  :resize +3<CR>
+nmap  w-  :resize -3<CR>
+nmap  w,  :vertical resize -3<CR>
+nmap  w.  :vertical resize +3<CR>
+" 快速切换esc模式
+inoremap jj <Esc>
 
-" 非递归按键映射
-"" F2 行号开关，用于鼠标复制代码用
+" ## 组合键 ##
+
+" 窗口移动
+nmap <C-J> <C-W><C-J> 
+nmap <C-K> <C-W><C-K>
+nmap <C-H> <C-W><C-H>
+nmap <C-L> <C-W><C-L>
+nmap <C-x> :bd<cr> " 关闭当前的TabBar
+" CTRL + s保存 需要在.bash_profile 设置 stty -ixon支持
+nmap <C-s> :w!<cr> 
+imap <C-s> <esc>:w!<cr>
+" 复制粘贴到剪切板
+vnoremap <leader>y "+y " 
+vnoremap <C-c> "+y
+vnoremap <C-v> "+p
+vnoremap <C-x> "+d
+inoremap <C-v> <C-r><C-o>+ " 
+" 滚动
+nnoremap <C-e> 2<C-e> " 向上滚动 
+nnoremap <C-y> 2<C-y> " 向下滚动 
+" 命令模式移动
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+" v模式缩进
+vmap <Tab> >" tab缩进
+vmap <S-Tab>" tab反缩进
+
+" ## 功能键 ##
+nnoremap <F2> :call HideNumber()<CR> " 切换行号显示 
+nnoremap <F8> ma%x`ax " 删除一对括号 
+
+" ## 函数 ##
+" 用于鼠标复制代码用
 function! HideNumber()
   if(&relativenumber == &number)
     set relativenumber! number!
@@ -107,14 +120,3 @@ function! HideNumber()
   endif
   set number?
 endfunc
-nnoremap <F2> :call HideNumber()<CR>
-
-" 命令模式按键映射
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
-
-" v模式按键映射
-vmap <Tab> >" v模式tab缩进
-vmap <S-Tab>" v模式tab缩进
