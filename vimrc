@@ -106,7 +106,10 @@ vmap <S-Tab>" tab反缩进
 
 " ## 功能键 ##
 nnoremap <F2> :call HideNumber()<CR> " 切换行号显示 
+nmap <F3> :NERDTreeToggle<cr> " 切换菜单显示（NERDTree）
+map <F4> <leader>ci<CR> " 注释快捷键（nerdcommenter） 
 nnoremap <F8> ma%x`ax " 删除一对括号 
+nmap <F9> :TagbarToggle<CR> " 切换tagbar显示（tagbar）
 
 " ## 函数 ##
 " 用于鼠标复制代码用
