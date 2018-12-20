@@ -3,7 +3,11 @@
 ```bash
 
 git clone https://github.com/caijinlin/vim-setup ~/.vim
-在 .vimrc 里面添加 so ~/.vim/vimrc
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+```
 
+```vimrc
+添加 so ~/.vim/vimrc
+执行:PluginInstall
 ```
 
