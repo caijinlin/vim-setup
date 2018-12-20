@@ -17,6 +17,7 @@ Plugin 'ervandew/supertab'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'mzlogin/vim-markdown-toc'
+Plugin 'wakatime/vim-wakatime'
 
 call vundle#end()
 
@@ -27,6 +28,7 @@ call vundle#end()
 let NERDTreeHijackNetrw = 0
 
 "--- Ctrlp ----
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_match_window = 'top,order:ttb,min:1,max:30,results:30'
 
 "--- airline ----
