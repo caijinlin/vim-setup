@@ -10,6 +10,7 @@ set sidescrolloff=7         " Start scrolling n chars before end of screen.
 set sidescroll=1            " The minimal number of columns to scroll horizontally.
 
 
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 filetype off
@@ -26,6 +27,9 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'ervandew/supertab'
 Plugin 'Shougo/neocomplete.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'mzlogin/vim-markdown-toc'
+
 
 call vundle#end()
 
@@ -45,6 +49,11 @@ set expandtab  " tab等于空格
 set shiftwidth=4 " 自动缩进空格数
 set backspace=indent,eol,start " 退格可删除缩进和原有字符
 set autoindent" 与前一行同样等级缩进
+
+" 折叠
+"au BufWinLeave * silent mkview  " 保存文件的折叠状态
+"au BufRead * silent loadview    " 恢复文件的折叠状态
+"nnoremap <space> za             " 用空格来切换折叠状态
 
 " UI
 set t_CO=256 " 终端显示256色
@@ -139,7 +148,7 @@ vmap <S-Tab>" v模式tab缩进
 
 " 插件配置
 "--- NERDTree ----
-nmap <C-b> :NERDTreeToggle<cr>
+nmap <F3> :NERDTreeToggle<cr>
 let NERDTreeHijackNetrw = 0
 
 "--- Ctrlp ----
@@ -164,6 +173,9 @@ let g:tagbar_type_go = {
 
 "---ctags---
 let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
+
+"---simplyfold--
+let g:SimpylFold_docstring_preview = 1
 
 "---nerdcommenter---
 "" 设置注释快捷键
