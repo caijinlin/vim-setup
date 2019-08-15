@@ -17,7 +17,6 @@ Plugin 'ervandew/supertab'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'mzlogin/vim-markdown-toc'
-Plugin 'wakatime/vim-wakatime'
 
 call vundle#end()
 
