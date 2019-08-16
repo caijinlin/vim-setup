@@ -47,6 +47,7 @@ let g:tagbar_type_go = {
 \}
 
 "--- ctags ---
+set tags=./tags;,tags
 let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 
 "--- simplyfold ---

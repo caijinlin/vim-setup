@@ -16,6 +16,9 @@ syntax  on    " 关键字上色
 syntax enable " 语法高亮
 set number    " 显示行号
 set noerrorbells visualbell t_vb= " remove sounds effects
+" ctrl +s 保存
+nmap <C-s> :w!<cr>
+imap <C-s> <esc>:w!<cr>
 
 " 格式化与缩进
 set tabstop=8     " 制表符tab长度
